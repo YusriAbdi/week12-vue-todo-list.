@@ -73,7 +73,7 @@ Penjelasan kode:
         </button>
   </li>
   ```
-  Kode <li> ini menampilkan setiap tugas dalam daftar menggunakan v-for yang melakukan perulangan pada array tasks, dengan index sebagai kunci unik melalui :key="index" untuk menjaga performa render, lalu menampilkan isi tugas dan menyediakan tombol "Hapus" yang memanggil deleteTask(index) sehingga item tersebut dapat dihapus langsung dari daftar secara dinamis.
+  Kode `<li>` ini menampilkan setiap tugas dalam daftar menggunakan v-for yang melakukan perulangan pada array tasks, dengan index sebagai kunci unik melalui :key="index" untuk menjaga performa render, lalu menampilkan isi tugas dan menyediakan tombol "Hapus" yang memanggil deleteTask(index) sehingga item tersebut dapat dihapus langsung dari daftar secara dinamis.
 - `v-if` dan `v-else`
   ```<p v-if="tasks.length === 0" class="empty-text">
       Tidak ada tugas
@@ -94,6 +94,6 @@ Penjelasan kode:
       </li>
     </ul>
   ```
-  Bagian ini digunakan untuk menampilkan kondisi daftar tugas, di mana elemen <p> dengan v-if="tasks.length === 0" akan muncul sebagai pesan “Tidak ada tugas” ketika array masih kosong, sedangkan <ul v-else> akan menampilkan daftar tugas menggunakan v-for jika terdapat item di dalam array, lengkap dengan tombol "Hapus" yang memungkinkan pengguna menghilangkan tugas tersebut secara langsung dari daftar.
+  Bagian ini digunakan untuk menampilkan kondisi daftar tugas, di mana elemen `<p>` dengan `v-if="tasks.length === 0"` akan muncul sebagai pesan “Tidak ada tugas” ketika array masih kosong, sedangkan `<ul v-else>` akan menampilkan daftar tugas menggunakan v-for jika terdapat item di dalam array, lengkap dengan tombol "Hapus" yang memungkinkan pengguna menghilangkan tugas tersebut secara langsung dari daftar.
 
 ---
