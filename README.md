@@ -21,13 +21,13 @@ Aplikasi memiliki fitur:
 ---
 ## Hasil
 ### 1. Screenshot Hasil Program
-       - Screenshot/Tampilan jika tidak ada list yang ditambahkan.png
-       - Screenshot/Mencoba menambahkan list pada form.png
-       - Screenshot/List yangg ditambahkan masuk ke daftar list.png
-       - Screenshot/Mencoba menambahkan 1 list lagi.png
-       - Screenshot/List terakhir masuk ke daftar.png
-       - Screenshot/Menghapus List yang typo dengan menekan button hapus yang berwarna merah.png
-       - Screenshot/List yang ditekan button hapus akan terhapus dari daftar list.png
+       - ![alt text](image.png)
+       - ![alt text](image-1.png)
+       - ![alt text](image-2.png)
+       - ![alt text](image-3.png)
+       - ![alt text](image-4.png)
+       - ![alt text](image-5.png)
+       - ![alt text](image-6.png)
 ### 2. Penjelasan Singkat
 Penjelasan kode:
 - `addTask()`
