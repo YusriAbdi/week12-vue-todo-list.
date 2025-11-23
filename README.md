@@ -21,17 +21,79 @@ Aplikasi memiliki fitur:
 ---
 ## Hasil
 ### 1. Screenshot Hasil Program
-       - <img width="1920" height="1080" alt="Tampilan jika tidak ada list yang ditambahkan" src="https://github.com/user-attachments/assets/a5b74e5a-f9b8-430f-81d2-b54a295d94e5" />
-       - <img width="1920" height="1080" alt="Mencoba menambahkan list pada form" src="https://github.com/user-attachments/assets/4aea5c43-5dfd-4794-91b2-daac73aafaa0" />
-       - <img width="1920" height="1080" alt="List yangg ditambahkan masuk ke daftar list" src="https://github.com/user-attachments/assets/3d01ef10-a0ee-4e2b-8f26-923004aa9028" />
-       - <img width="1920" height="1080" alt="Mencoba menambahkan 1 list lagi" src="https://github.com/user-attachments/assets/4f4b6897-c55e-4d61-88ad-68424e202d90" />
-       - <img width="1920" height="1080" alt="List terakhir masuk ke daftar" src="https://github.com/user-attachments/assets/325ad974-ace9-4ce2-97c9-063e1d85164b" />
-       - <img width="1920" height="1080" alt="Menghapus List yang typo dengan menekan button hapus yang berwarna merah" src="https://github.com/user-attachments/assets/97903194-b68e-4551-a5de-22a1719b6b73" />
-       - <img width="1920" height="1080" alt="List yang ditekan button hapus akan terhapus dari daftar list" src="https://github.com/user-attachments/assets/2e42bf20-0325-46ba-a56b-c0f91f9e5f34" />
+       - Screenshot/Tampilan jika tidak ada list yang ditambahkan.png
+       - Screenshot/Mencoba menambahkan list pada form.png
+       - Screenshot/List yangg ditambahkan masuk ke daftar list.png
+       - Screenshot/Mencoba menambahkan 1 list lagi.png
+       - Screenshot/List terakhir masuk ke daftar.png
+       - Screenshot/Menghapus List yang typo dengan menekan button hapus yang berwarna merah.png
+       - Screenshot/List yang ditekan button hapus akan terhapus dari daftar list.png
 ### 2. Penjelasan Singkat
-Jelaskan bagian penting, misalnya:
-- bagaimana `addTask()` bekerja
-- bagaimana data ditampilkan menggunakan `v-for`
+Penjelasan kode:
+- `addTask()`
+  ```
+  const addTask = () => {
+    if (newTask.value.trim() === '') return
+    tasks.value.push(newTask.value)
+    newTask.value = ''
+  }
+  ```
+  Fungsi addTask() digunakan untuk menambahkan tugas baru ke dalam daftar dengan cara memeriksa terlebih dahulu apakah input tidak kosong menggunakan trim(), kemudian memasukkan nilai newTask ke array tasks melalui tasks.value.push(), dan setelah tugas berhasil ditambahkan, nilai input dikosongkan kembali dengan mengatur newTask.value menjadi string kosong; proses ini memanfaatkan reaktivitas Vue sehingga setiap perubahan langsung memperbarui tampilan daftar tugas tanpa perlu memuat ulang halaman.
+- `deleteTask`
+  ```
+  const deleteTask = (index) => {
+    tasks.value.splice(index, 1)
+  }
+  ```
+  Fungsi deleteTask(index) digunakan untuk menghapus tugas tertentu dari daftar dengan mengambil posisi item melalui parameter index, lalu menghapusnya menggunakan tasks.value.splice(index, 1), sehingga elemen pada indeks tersebut langsung hilang dari array dan daftar tugas pada tampilan otomatis diperbarui berkat reaktivitas Vue.
+- `v-model`
+  ```
+  <form @submit.prevent="addTask" class="task-form">
+      <input
+        v-model="newTask"
+        type="text"
+        placeholder="Tambahkan tugas..."
+        class="task-input"
+      />
+      <button type="submit" class="btn-add">Tambah</button>
+  </form>
+  ```
+  Bagian `<form>` ini berfungsi sebagai tempat pengguna menambahkan tugas baru, di mana input teks terhubung ke variabel newTask melalui v-model sehingga setiap perubahan langsung tersimpan dalam state, lalu saat form dikirim tombol submit akan memicu fungsi addTask() melalui @submit.prevent="addTask" untuk memasukkan tugas tersebut ke dalam daftar tanpa me-reload halaman.
+- `v-for`
+  ```
+  <li
+        v-for="(task, index) in tasks"
+        :key="index"
+        class="task-item"
+      >
+        {{ task }}
 
-- cara kerja tombol hapus
+        <button @click="deleteTask(index)" class="btn-delete">
+          Hapus
+        </button>
+  </li>
+  ```
+  Kode <li> ini menampilkan setiap tugas dalam daftar menggunakan v-for yang melakukan perulangan pada array tasks, dengan index sebagai kunci unik melalui :key="index" untuk menjaga performa render, lalu menampilkan isi tugas dan menyediakan tombol "Hapus" yang memanggil deleteTask(index) sehingga item tersebut dapat dihapus langsung dari daftar secara dinamis.
+- `v-if` dan `v-else`
+  ```<p v-if="tasks.length === 0" class="empty-text">
+      Tidak ada tugas
+    </p>
+
+    <!-- Jika ada tugas -->
+    <ul v-else class="task-list">
+      <li
+        v-for="(task, index) in tasks"
+        :key="index"
+        class="task-item"
+      >
+        {{ task }}
+
+        <button @click="deleteTask(index)" class="btn-delete">
+          Hapus
+        </button>
+      </li>
+    </ul>
+  ```
+  Bagian ini digunakan untuk menampilkan kondisi daftar tugas, di mana elemen <p> dengan v-if="tasks.length === 0" akan muncul sebagai pesan “Tidak ada tugas” ketika array masih kosong, sedangkan <ul v-else> akan menampilkan daftar tugas menggunakan v-for jika terdapat item di dalam array, lengkap dengan tombol "Hapus" yang memungkinkan pengguna menghilangkan tugas tersebut secara langsung dari daftar.
+
 ---
